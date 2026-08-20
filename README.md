@@ -40,6 +40,19 @@ The executable can be built with any compiler that supports C# 14.
 
 Use the Debug or Release build configurations when building. There isn't any platform specific code to worry about!
 
+### Linux
+
+The user interface is Windows Forms, which has no native Linux implementation, but the solution builds on Linux (cross-targeting Windows) and the `PKHeX.Core` test suite runs natively. The resulting executable runs under [Wine](https://www.winehq.org/) (9.0 or newer).
+
+With the .NET 10.0 SDK and Wine installed:
+
+```sh
+./run-linux.sh             # build then run via Wine
+./run-linux.sh --no-build  # skip the build, run the last built executable
+```
+
+The script publishes a self-contained executable to `PKHeX.WinForms/bin/linux-publish/`, so no .NET runtime needs to be installed inside the Wine prefix.
+
 ## Dependencies
 
 PKHeX's QR code generation code is taken from [QRCoder](https://github.com/codebude/QRCoder), which is licensed under [the MIT license](https://github.com/codebude/QRCoder/blob/master/LICENSE.txt).

@@ -4,6 +4,7 @@
     <LangVersion>14</LangVersion>
     <Nullable>enable</Nullable>
     <NeutralLanguage>en</NeutralLanguage>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <Product>PKHeX</Product>
     <Company>Project Pokémon</Company>
     <Authors>Kaphotics</Authors>
