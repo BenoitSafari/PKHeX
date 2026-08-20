@@ -4,7 +4,7 @@ using Avalonia.Media;
 using PKHeX.Avalonia.Sprites;
 using PKHeX.Core;
 
-namespace PKHeX.Avalonia.Views;
+namespace PKHeX.Avalonia.Views.Legality;
 
 public sealed partial class LegalityReportWindow : Window
 {
