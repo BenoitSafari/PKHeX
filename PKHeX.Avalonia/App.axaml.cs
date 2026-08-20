@@ -1,8 +1,11 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using PKHeX.Avalonia.Services;
 using PKHeX.Avalonia.ViewModels;
 using PKHeX.Avalonia.Views;
+using PKHeX.Core;
+using PKHeX.Drawing.PokeSprite;
 
 namespace PKHeX.Avalonia;
 
@@ -14,12 +17,18 @@ public sealed class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            var vm = new MainWindowViewModel();
+            var settings = AppSettings.Load();
+            GameInfo.CurrentLanguage = settings.Language;
+            SpriteName.AllowShinySprite = settings.ShinySprites;
+
+            var vm = new MainWindowViewModel(settings);
             desktop.MainWindow = new MainWindow { DataContext = vm };
 
-            // Allow opening a save file passed on the command line.
+            // Open the file passed on the command line, else start on a blank save.
             if (desktop.Args is [{ Length: > 0 } path, ..])
                 vm.LoadSaveFromPath(path);
+            else
+                vm.LoadStartupBlank();
         }
 
         base.OnFrameworkInitializationCompleted();
